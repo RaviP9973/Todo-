@@ -17,7 +17,7 @@ export const ThemeContext = createContext({
 });
 
 const App = () => {
-  usePushNotifications();
+  // usePushNotifications();
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem("theme");
     return savedTheme || "light";
