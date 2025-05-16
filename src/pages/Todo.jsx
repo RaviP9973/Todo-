@@ -423,44 +423,44 @@ const Todo = () => {
   //   )
   // }
 
-//   const [lat,setLat] = useState(null);
-//   const [lng,setLng] = useState(null);
-// useEffect(() => {
-//   if (!navigator.geolocation) return;
+  const [lat,setLat] = useState(null);
+  const [lng,setLng] = useState(null);
+useEffect(() => {
+  if (!navigator.geolocation) return;
 
-//   const watchId = navigator.geolocation.watchPosition(
-//     (position) => {
-//       console.log("accuracy", position.coords.accuracy)
-//       setLat(position.coords.latitude);
-//       setLng(position.coords.longitude);
-//       console.log('Updated Location:', position.coords.latitude, position.coords.longitude);
-//     },
-//     (error) => {
-//       console.error('Location watch error:', error.message);
-//     },
-//     {
-//       enableHighAccuracy: true,
-//       timeout: 10000,
-//       maximumAge: 0,
-//     }
-//   );
+  const watchId = navigator.geolocation.watchPosition(
+    (position) => {
+      console.log("accuracy", position.coords.accuracy)
+      setLat(position.coords.latitude);
+      setLng(position.coords.longitude);
+      console.log('Updated Location:', position.coords.latitude, position.coords.longitude);
+    },
+    (error) => {
+      console.error('Location watch error:', error.message);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0,
+    }
+  );
 
-//   return () => navigator.geolocation.clearWatch(watchId); // cleanup on unmount or userId change
-// }, [userId]);
+  return () => navigator.geolocation.clearWatch(watchId); // cleanup on unmount or userId change
+}, [userId]);
 
-  // const [restaurants,setRestaurants] = useState (null);
+  const [restaurants,setRestaurants] = useState (null);
   
-  // const getNearByRestaurents = async() => {
-  //   const { data, error } = await supabase.rpc('get_nearby_restaurants', {
-  //     p_lat: lat,
-  //     p_lng: lng,
-  //     p_radius_m: 400000
-  //   });
+  const getNearByRestaurents = async() => {
+    const { data, error } = await supabase.rpc('get_nearby_restaurants', {
+      p_lat: lat,
+      p_lng: lng,
+      p_radius_m: 400000
+    });
 
-  //   setRestaurants(data);
-  //   console.log("data",data);
-  //   console.log("error",error);
-  // }
+    setRestaurants(data);
+    console.log("data",data);
+    console.log("error",error);
+  }
 
 //   const insertNewResturants = async () => {
 //     const lat = 25.5949;
@@ -523,7 +523,7 @@ const Todo = () => {
         </div>
 
 
-        {/* <button onClick={getNearByRestaurents}>Get Resturants</button> */}
+       <button onClick={getNearByRestaurents}>Get Resturants</button> 
         {/* <button onClick={insertNewResturants}>Insert Resturants</button> */}
         {/* <button onClick={() => getRestaurantsByFoodType("veg")}>rating Resturants</button> */}
         
@@ -997,14 +997,14 @@ const Todo = () => {
         </div>
       )}
 
-      {/* {restaurants && restaurants.map((res) => (
+       {restaurants && restaurants.map((res) => (
           <div key={res.id} style={{ border: '1px solid #ccc', padding: '12px', marginBottom: '10px', borderRadius: '8px' }}>
             <h3 style={{ margin: 0 }}>{res.name}</h3>
             <p style={{ margin: '4px 0', color: '#555' }}>
               Distance: {res.distance_km?.toFixed(2)} km
             </p>
           </div>
-        ))} */}
+        ))} 
     </div>
   )
 }
